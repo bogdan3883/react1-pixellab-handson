@@ -75,6 +75,8 @@ class NewsletterForm extends React.Component {
         <button title="Subscribe" type="submit" disabled={this.state.busy}>
           {this.state.busy ? '...loading' : 'Submit'}
         </button>
+
+        <div className="form-message">{this.state.formMessage}</div>
       </form>
     );
   }
@@ -84,3 +86,23 @@ const newsletterContainer = document.querySelector('.home-newsletter');
 // React recipe?
 
 ReactDOM.render(<NewsletterForm></NewsletterForm>, newsletterContainer);
+
+class AddToCartButton extends React.Component {
+  state = {
+    added: false,
+  };
+  // all components require a render
+  render() {
+    //render MUST return jsx
+    return (
+      <button className="product-a2c">
+        {this.state.added === true ? 'Remove from Cart' : 'Add to Cart'}
+      </button>
+    );
+  }
+}
+
+const productTileControls = document.querySelectorAll('.product-tile-controls');
+productTileControls.forEach((productTileControls) => {
+  ReactDOM.render(<AddToCartButton></AddToCartButton>, productTileControls);
+});
